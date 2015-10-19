@@ -56,11 +56,10 @@ public class GsonRead {
             JsonReader reader = new JsonReader(new InputStreamReader(stream, "UTF-8"));
             Gson gson = new GsonBuilder().create();
 
-            String name;
-            int id;
-
+            // Read file in stream mode
             reader.beginArray();
             while (reader.hasNext()) {
+                // Read data in object model
                 Person person = gson.fromJson(reader, Person.class);
                 if (person.getId() == 0 ) {
                     System.out.println(person);
@@ -76,10 +75,12 @@ public class GsonRead {
     }
 
     /**
+     * Read file in object model and later in stream mode.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //GsonRead.readDom();
+        GsonRead.readDom();
         GsonRead.readStream();
     }
 
