@@ -32,7 +32,7 @@ public class GsonRead {
             Gson gson = new GsonBuilder().create();
             Person[] people = gson.fromJson(reader, Person[].class);
 
-            System.out.println(people[0]);
+            System.out.println("Object mode: " + people[0]);
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GsonRead.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,7 +62,7 @@ public class GsonRead {
                 // Read data in object model
                 Person person = gson.fromJson(reader, Person.class);
                 if (person.getId() == 0 ) {
-                    System.out.println(person);
+                    System.out.println("Stream mode: " + person);
                 }
                 break;
             }
@@ -80,8 +80,20 @@ public class GsonRead {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        long ti, tf;
+        
+        ti = System.currentTimeMillis();
+        System.out.println("Start reading in object mode: " + ti);
         GsonRead.readDom();
+        tf = System.currentTimeMillis();
+        System.out.println("Finish. Total time: " + (tf - ti));
+        
+        ti = System.currentTimeMillis();
+        System.out.println("Start reading in stream mode: " + ti);
         GsonRead.readStream();
+        tf = System.currentTimeMillis();
+        System.out.println("Finish. Total time: " + (tf - ti));
+        
     }
 
 }
