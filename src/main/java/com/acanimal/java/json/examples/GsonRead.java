@@ -22,7 +22,7 @@ public class GsonRead {
     private static final InputStream stream = GsonRead.class.getClass().getResourceAsStream(FILENAME);
 
     /**
-     * With the object model read the whole JSON file is loaded on memory and the 
+     * With the object model read the whole JSON file is loaded on memory and the
      * application gets the desired element.
      */
     public static void readDom() {
@@ -59,7 +59,7 @@ public class GsonRead {
             // Read file in stream mode
             reader.beginArray();
             while (reader.hasNext()) {
-                // Read data in object model
+                // Read data into object model
                 Person person = gson.fromJson(reader, Person.class);
                 if (person.getId() == 0 ) {
                     System.out.println("Stream mode: " + person);
@@ -76,24 +76,24 @@ public class GsonRead {
 
     /**
      * Read file in object model and later in stream mode.
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         long ti, tf;
-        
+
         ti = System.currentTimeMillis();
         System.out.println("Start reading in object mode: " + ti);
         GsonRead.readDom();
         tf = System.currentTimeMillis();
         System.out.println("Finish. Total time: " + (tf - ti));
-        
+
         ti = System.currentTimeMillis();
         System.out.println("Start reading in stream mode: " + ti);
         GsonRead.readStream();
         tf = System.currentTimeMillis();
         System.out.println("Finish. Total time: " + (tf - ti));
-        
+
     }
 
 }
